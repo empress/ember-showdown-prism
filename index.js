@@ -11,8 +11,6 @@ module.exports = {
   },
 
   included(app) {
-    this._super.included.apply(this, arguments)
-
     if(!app.options['ember-prism']) {
       app.options['ember-prism'] = {
         theme: 'okaidia',
@@ -33,5 +31,7 @@ module.exports = {
         plugins: ['line-numbers', 'normalize-whitespace']
       }
     }
+
+    this._super.included.apply(this, arguments)
   },
 };
