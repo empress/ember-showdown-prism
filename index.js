@@ -6,15 +6,9 @@ const { join } = require('path');
 module.exports = {
   name: require('./package').name,
 
-  treeForPublic: function() {
-    return new Funnel(join(this.root, 'public'));
-  },
-
-  included(app) {
-    if(!app.options['ember-prism']) {
-      app.options['ember-prism'] = {
-        theme: 'okaidia',
-
+  options: {
+    babel: {
+      plugins: [[require.resolve('babel-plugin-prismjs'), {
         components: [
           'apacheconf',
           'bash',
@@ -27,11 +21,13 @@ module.exports = {
           'ruby',
           'scss'
         ],
-
-        plugins: ['line-numbers', 'normalize-whitespace']
-      }
+        plugins: ['line-numbers', 'normalize-whitespace'],
+        theme: "okaidia"
+      }]]
     }
+  },
 
-    this._super.included.apply(this, arguments)
+  treeForPublic: function() {
+    return new Funnel(join(this.root, 'public'));
   },
 };

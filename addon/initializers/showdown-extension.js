@@ -1,4 +1,4 @@
-/* global Prism */
+import Prism from 'prismjs';
 import showdown from 'showdown';
 
 export function initialize(/* application */) {
