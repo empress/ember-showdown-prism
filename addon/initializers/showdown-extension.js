@@ -1,5 +1,5 @@
-import Prism from 'prismjs';
 import showdown from 'showdown';
+import { assert } from '@ember/debug';
 
 export function initialize(/* application */) {
   showdown.subParser('githubCodeBlocks', function (text, options, globals) {
@@ -46,9 +46,11 @@ export function initialize(/* application */) {
       // by default we will return codeblock
       let highlightedCodeBlock = codeblock;
 
-      if (language) {
+      assert(`Language "${language}" is not currently available. Configure Prism to include it or specify a different language.`, Prism.languages[language]);
+
+      if (language && Prism.languages[language]) {
         highlightedCodeBlock = Prism.highlight(codeblock, Prism.languages[language], language) + end;
-        codeblock = `<pre class="language-${language}"><code ${language ? `class="${language} language-${language}"` : ''}>${highlightedCodeBlock}</code></pre>`;
+        codeblock = `<pre class="language-${language} line-numbers"><code ${language ? `class="${language} language-${language}"` : ''}>${highlightedCodeBlock}</code></pre>`;
 
         if(attributes['data-filename']) {
           codeblock = `<div class="filename ${language}"><div class="ribbon"></div><span>${attributes['data-filename'] || ''}</span>${codeblock}</div>`;
