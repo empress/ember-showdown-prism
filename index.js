@@ -10,7 +10,8 @@ module.exports = {
     return new Funnel(join(this.root, 'public'));
   },
 
-  included(app) {
+  included() {
+    let app = findHost(this);
     if(!app.options['ember-prism']) {
       app.options['ember-prism'] = {
         theme: 'okaidia',
@@ -35,3 +36,15 @@ module.exports = {
     this._super.included.apply(this, arguments)
   },
 };
+
+// Polyfill [Addon._findHost](https://ember-cli.com/api/classes/Addon.html#method__findHost) for older versions of ember-cli
+function findHost(addon) {
+  var current = addon;
+  var app;
+
+  do {
+    app = current.app || app;
+  } while (current.parent.parent && (current = current.parent));
+
+  return app;
+}
