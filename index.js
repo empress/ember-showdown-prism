@@ -26,7 +26,8 @@ module.exports = {
           'json',
           'markup-templating',
           'ruby',
-          'scss'
+          'scss',
+          'yaml'
         ],
 
         plugins: ['line-numbers', 'normalize-whitespace']
