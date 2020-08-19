@@ -1,3 +1,9 @@
+2.1.0 / 2020-08-19
+==================
+
+  * add assertion if missing language is used & fallback to non-prism rendering #5 from @nickschot
+  * add YAML to the default enabled languages #6 from @nickschot
+
 2.0.0 / 2020-08-17
 ==================
 
