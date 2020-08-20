@@ -1,3 +1,8 @@
+2.2.0 / 2020-08-20
+==================
+
+  * add linkable line numbers to highlighted code blocks #8 from @nickschot
+
 2.1.0 / 2020-08-19
 ==================
 
