@@ -4,24 +4,7 @@ const EmberAddon = require('ember-cli/lib/broccoli/ember-addon');
 
 module.exports = function(defaults) {
   let app = new EmberAddon(defaults, {
-    'ember-prism': {
-      theme: 'okaidia',
 
-      components: [
-        'apacheconf',
-        'bash',
-        'css',
-        'handlebars',
-        'http',
-        'javascript',
-        'json',
-        'markup-templating',
-        'ruby',
-        'scss'
-      ],
-
-      plugins: ['line-numbers', 'normalize-whitespace']
-    }
   });
 
   /*

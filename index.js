@@ -29,8 +29,6 @@ module.exports = {
           'scss',
           'yaml'
         ],
-
-        plugins: ['line-numbers', 'normalize-whitespace']
       }
     }
 
