@@ -47,3 +47,44 @@ code {
   -ms-font-feature-settings: "kern", "tnum";
   font-feature-settings: "kern", "tnum";
 }
+
+pre[class*="language-"].line-numbers {
+  position: relative;
+  padding-left: 3.8em;
+  counter-reset: linenumber;
+}
+
+pre[class*="language-"].line-numbers > code {
+  position: relative;
+  white-space: inherit;
+}
+
+.line-numbers .line-numbers-rows {
+  position: absolute;
+  top: 0;
+  font-size: 100%;
+  left: -3.8em;
+  width: 3em; /* works for line-numbers below 1000 lines */
+  letter-spacing: -1px;
+  border-right: 1px solid #999;
+}
+
+.line-numbers-rows > a {
+  display: block;
+  counter-increment: linenumber;
+  background: none!important;
+  text-decoration: none!important;
+}
+
+.line-numbers-rows > a:before {
+  content: counter(linenumber);
+  color: #999;
+  display: block;
+  padding-right: 0.8em;
+  text-align: right;
+}
+
+.line-numbers-rows > a:hover:before,
+.line-numbers-rows > a:focus:before {
+  color: #fff;
+}

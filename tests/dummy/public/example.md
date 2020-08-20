@@ -1,9 +1,13 @@
 Start with something simple
 
+This is an inline code example `sh go do a thing`.
+
+Let's make it a block
 ```
 sh go do a thing
 ```
 
+Adding a `javascript` as a language to get syntax highlighting
 ```javascript
 let thing = 'face';
 ```

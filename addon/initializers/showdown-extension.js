@@ -2,6 +2,21 @@
 import showdown from 'showdown';
 import { assert } from '@ember/debug';
 
+// taken from prismjs, regex to detect newlines in text
+const NEW_LINE_EXP = /\n(?!$)/g;
+
+function getLineNumbersHTML(index, codeblock) {
+  let match = codeblock.match(NEW_LINE_EXP);
+  let linesNum = match ? match.length + 1 : 1;
+  let lines = '';
+  for (let i = 1; i < linesNum + 1; i++) {
+    let id = `C${index}_L${i}`;
+    lines += `<a href="#${id}" id=${id}></a>`
+  }
+
+  return `<span aria-hidden="true" class="line-numbers-rows">${lines}</span>`;
+}
+
 export function initialize(/* application */) {
   showdown.subParser('githubCodeBlocks', function (text, options, globals) {
     // early exit if option is not enabled
@@ -13,8 +28,8 @@ export function initialize(/* application */) {
 
     text += '¨0';
 
+    let idCounter = 1;
     text = text.replace(/(?:^|\n)(?: {0,3})(```+|~~~+)(?: *)([^\n`~]*)\n([\s\S]*?)\n(?: {0,3})\1/g, function (wholeMatch, delim, languageBlock, inputCodeblock) {
-
       var end = (options.omitExtraWLInCodeBlocks) ? '' : '\n';
 
       let codeblock = inputCodeblock;
@@ -44,22 +59,21 @@ export function initialize(/* application */) {
         attributes[keyValue[0]] = keyValue[1];
       });
 
-      // by default we will return codeblock
-      let highlightedCodeBlock = codeblock;
+      let lineNumbersHTML = getLineNumbersHTML(idCounter, codeblock);
+      idCounter++;
 
-      assert(`Language "${language}" not found. Have you configured Prism correctly?`, Prism.languages[language])
+      assert(`Language "${language}" not found. Have you configured Prism correctly?`, !language || Prism.languages[language]);
 
       if (language && Prism.languages[language]) {
-        highlightedCodeBlock = Prism.highlight(codeblock, Prism.languages[language], language) + end;
-        codeblock = `<pre class="language-${language}"><code ${language ? `class="${language} language-${language}"` : ''}>${highlightedCodeBlock}</code></pre>`;
+        let highlightedCodeBlock = Prism.highlight(codeblock, Prism.languages[language], language) + end;
+        codeblock = `<pre class="language-${language} line-numbers"><code ${language ? `class="${language} language-${language}"` : ''}>${highlightedCodeBlock}${lineNumbersHTML}</code></pre>`;
 
         if(attributes['data-filename']) {
           codeblock = `<div class="filename ${language}"><div class="ribbon"></div><span>${attributes['data-filename'] || ''}</span>${codeblock}</div>`;
         }
       } else {
-        codeblock = `<pre><code>${codeblock}</code></pre>`;
+        codeblock = `<pre class="language-none line-numbers"><code class="language-none">${codeblock}${lineNumbersHTML}</code></pre>`;
       }
-
 
       codeblock = showdown.subParser('hashBlock')(codeblock, options, globals);
 
