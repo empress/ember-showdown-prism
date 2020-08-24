@@ -6,7 +6,8 @@ ember-showdown-prism is a drop-in addon that automatically adds [Prism](https://
 This addon also provides filename wrappers to the code block, with filetype icons, if a code block is marked with a `data-filename` attribute:
 
 ```markdown
-\`\`\`handlebars {data-filename=app/templates/blog-post.hbs}
+
+````handlebars {data-filename=app/templates/blog-post.hbs}
 <h1>{{@model.title}}</h1>
 <h2>by {{@model.author}}</h2>
 
@@ -17,7 +18,7 @@ This addon also provides filename wrappers to the code block, with filetype icon
 <div class="body">
   {{@model.body}}
 </div>
-\`\`\`
+``` 
 ```
 
 ![example of the above code sample](https://user-images.githubusercontent.com/594890/91036439-3f524980-e5ff-11ea-910b-b655f036b439.png)
