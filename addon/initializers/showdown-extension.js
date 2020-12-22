@@ -66,8 +66,17 @@ export function initialize(/* application */) {
       assert(`Language "${language}" not found. Have you configured Prism correctly?`, !language || Prism.languages[language]);
 
       if (language && Prism.languages[language]) {
+        // Restore dollar signs & tremas temporarily so Prism won't highlight this
+        // See https://github.com/showdownjs/showdown/blob/a9f38b6f057284460d6447371f3dc5dea999c0a6/src/converter.js#L285 for more info
+        codeblock = codeblock.replace(/¨D/g, '$$');
+        codeblock = codeblock.replace(/¨T/g, '¨');
+
         let highlightedCodeBlock = Prism.highlight(codeblock, Prism.languages[language], language) + end;
         codeblock = `<pre class="language-${language} line-numbers"><code ${language ? `class="${language} language-${language}"` : ''}>${highlightedCodeBlock}${lineNumbersHTML}</code></pre>`;
+
+        // Convert to the special characters Showdown uses again
+        codeblock = codeblock.replace(/¨/g, '¨T');
+        codeblock = codeblock.replace(/\$/g, '¨D');
 
         if(attributes['data-filename']) {
           codeblock = `<div class="filename ${language}"><div class="ribbon"></div><span>${attributes['data-filename'] || ''}</span>${codeblock}</div>`;
