@@ -39,7 +39,7 @@ jobs:
 
       - run: npm i -g npm@7
       - run: npm install --no-package-lock
-      - run: npm test
+      - run: npm run test:ember
 
   test:
     name: Tests
@@ -54,7 +54,7 @@ jobs:
 
       - run: npm i -g npm@7
       - run: npm ci
-      - run: npm run test
+      - run: npm run test:ember
 
   try-scenarios:
     name: "ember-try: ${{ matrix.ember-try-scenario }}"
@@ -67,11 +67,15 @@ jobs:
         ember-try-scenario:
           - 'ember-3.13'
           - 'ember-lts-3.16'
+          - 'ember-lts-3.20'
+          - 'ember-lts-3.24'
           - 'ember-release'
           - 'ember-beta'
           - 'ember-canary'
           - 'ember-default-with-jquery'
           - 'ember-classic'
+          - 'embroider-safe'
+          - 'embroider-optimized'
 
     steps:
       - uses: actions/checkout@v2
