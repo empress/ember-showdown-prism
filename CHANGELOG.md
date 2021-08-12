@@ -1,3 +1,13 @@
+2.3.0 / 2021-08-12
+==================
+
+  * fix dollar signs in codeblocks breaking when running through Prism #13 from @nickschot
+  * add a `$` to the demo app to demonstrate the issues with it #14 from @nickschot
+  * update with ember-cli-update #16 from @mansona
+  * Move from travis to github actions #15 from @mansona
+  * add prember for netlify example app #10 from @mansona
+  * add a better README #9 from @mansona
+
 2.2.0 / 2020-08-20
 ==================
 
