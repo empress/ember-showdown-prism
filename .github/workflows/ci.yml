@@ -3,87 +3,72 @@ name: CI
 on:
   push:
     branches:
-      - master
       - main
-      - "v*"
-  pull_request:
+      - master
+  pull_request: {}
 
-env:
-  NODE_VERSION: 10
-  FORCE_COLOR: 1
+concurrency:
+   group: ci-${{ github.head_ref || github.ref }}
+   cancel-in-progress: true
 
 jobs:
-  lint:
-    name: Linting
+  test:
+    name: "Tests"
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: ${{ env.NODE_VERSION }}
-
+          node-version: 12.x
+          cache: npm
       - run: npm i -g npm@7
       - run: npm ci
       - run: npm run lint
-
-  floating-dependencies:
-    name: Floating Dependencies
-    runs-on: ubuntu-latest
-
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{ env.NODE_VERSION }}
-
-      - run: npm i -g npm@7
-      - run: npm install --no-package-lock
       - run: npm run test:ember
 
-  test:
-    name: Tests
+  floating:
+    name: "Floating Dependencies"
     runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v2
-      - uses: mansona/npm-lockfile-version@v1
       - uses: actions/setup-node@v2
         with:
-          node-version: ${{ env.NODE_VERSION }}
-
+          node-version: 12.x
+          cache: npm
       - run: npm i -g npm@7
-      - run: npm ci
+      - run: npm install --no-shrinkwrap
       - run: npm run test:ember
 
   try-scenarios:
-    name: "ember-try: ${{ matrix.ember-try-scenario }}"
+    name: ${{ matrix.try-scenario }}
     runs-on: ubuntu-latest
-    timeout-minutes: 10
-    needs: test
+    needs: 'test'
 
     strategy:
+      fail-fast: false
       matrix:
-        ember-try-scenario:
-          - 'ember-3.13'
-          - 'ember-lts-3.16'
-          - 'ember-lts-3.20'
-          - 'ember-lts-3.24'
-          - 'ember-release'
-          - 'ember-beta'
-          - 'ember-canary'
-          - 'ember-default-with-jquery'
-          - 'ember-classic'
-          - 'embroider-safe'
-          - 'embroider-optimized'
+        try-scenario:
+          - ember-3.13
+          - ember-lts-3.16
+          - ember-lts-3.20
+          - ember-lts-3.24
+          - ember-release
+          - ember-beta
+          - ember-canary
+          - ember-classic
+          - ember-default-with-jquery
+          - embroider-safe
+          - embroider-optimized
 
     steps:
       - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
-          node-version: ${{ env.NODE_VERSION }}
-
+          node-version: 12.x
+          cache: npm
       - run: npm i -g npm@7
       - run: npm ci
-      - name: test
-        run: node_modules/.bin/ember try:one ${{ matrix.ember-try-scenario }} --skip-cleanup
+      - name: Run Tests
+        run: ./node_modules/.bin/ember try:one ${{ matrix.try-scenario }}
