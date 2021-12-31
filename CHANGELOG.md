@@ -1,3 +1,10 @@
+3.0.0 / 2021-12-31
+==================
+
+  * update with ember-cli-update to 3.28 #20 from @mansona
+  * add a basic test #19 from @mansona
+  * Breaking: drop Node 10 and unify github ci workflow with blueprint #18 from @mansona
+
 2.3.0 / 2021-08-12
 ==================
 
