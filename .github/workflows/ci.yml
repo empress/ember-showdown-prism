@@ -61,6 +61,8 @@ jobs:
           - ember-default-with-jquery
           - embroider-safe
           - embroider-optimized
+          - ember-release-no-deprecations
+          - no-deprecations
 
     steps:
       - uses: actions/checkout@v2
