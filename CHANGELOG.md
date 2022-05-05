@@ -1,3 +1,7 @@
+3.1.0 / 2022-05-05
+==================
+* add typescript and diff components #25 from @mansona
+
 3.0.0 / 2021-12-31
 ==================
 
