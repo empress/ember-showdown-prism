@@ -28,7 +28,9 @@ module.exports = {
           'markup-templating',
           'ruby',
           'scss',
-          'yaml'
+          'yaml',
+          'typescript',
+          'diff',
         ],
       }
     }
