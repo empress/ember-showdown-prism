@@ -1,3 +1,8 @@
+3.2.0 / 2022-08-06
+==================
+* update ember-prism #31 from @mansona
+* fix ember-try npm overrides #27 from @mansona
+
 3.1.0 / 2022-05-05
 ==================
 * add typescript and diff components #25 from @mansona
