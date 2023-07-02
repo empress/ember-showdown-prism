@@ -28,12 +28,8 @@
   },
   "dependencies": {
     "broccoli-funnel": "^3.0.1",
-    "ember-cli-babel": "^7.26.10",
-    "ember-cli-htmlbars": "^5.7.2",
-    "ember-cli-showdown": "^6.0.1",
-    "ember-prism": "^0.13.0",
-    "lint-to-the-future": "^0.6.0",
-    "lint-to-the-future-eslint": "^0.2.1"
+    "ember-auto-import": "^2.0.0",
+    "ember-cli-babel": "^7.26.10"
   },
   "devDependencies": {
     "@ember/optional-features": "^2.0.0",
@@ -44,11 +40,12 @@
     "auto-changelog": "github:mansona/auto-changelog#epic",
     "babel-eslint": "^10.1.0",
     "broccoli-asset-rev": "^3.0.0",
-    "ember-auto-import": "^2.0.0",
     "ember-cli": "~3.28.5",
     "ember-cli-dependency-checker": "^3.2.0",
     "ember-cli-fastboot": "^3.2.0-beta.5",
+    "ember-cli-htmlbars": "^5.7.2",
     "ember-cli-inject-live-reload": "^2.1.0",
+    "ember-cli-showdown": "^7.0.0",
     "ember-cli-sri": "^2.1.1",
     "ember-cli-terser": "^4.0.2",
     "ember-disable-prototype-extensions": "^1.1.3",
@@ -57,6 +54,7 @@
     "ember-load-initializers": "^2.1.2",
     "ember-maybe-import-regenerator": "^0.1.6",
     "ember-page-title": "^6.2.2",
+    "ember-prism": "^0.13.0",
     "ember-qunit": "^5.1.5",
     "ember-resolver": "^8.0.3",
     "ember-source": "~3.28.8",
@@ -69,13 +67,19 @@
     "eslint-plugin-node": "^11.1.0",
     "eslint-plugin-prettier": "^3.4.1",
     "eslint-plugin-qunit": "^6.2.0",
+    "lint-to-the-future": "^0.6.0",
+    "lint-to-the-future-eslint": "^0.2.1",
     "loader.js": "^4.7.0",
     "npm-run-all": "^4.1.5",
     "prember": "^1.0.5",
     "prettier": "^2.5.1",
     "qunit": "^2.17.2",
     "qunit-dom": "^1.6.0",
+    "showdown": "^1.9.1",
     "webpack": "^5.0.0"
+  },
+  "peerDependencies": {
+    "showdown": ">1.0.0"
   },
   "engines": {
     "node": "12.* || 14.* || >= 16"
