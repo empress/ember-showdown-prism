@@ -1,5 +1,4 @@
-ember-showdown-prism
-==============================================================================
+# ember-showdown-prism
 
 ember-showdown-prism is a drop-in addon that automatically adds [Prism](https://prismjs.com/) syntax highlighting to code blocks if you are using [showdown](https://github.com/showdownjs/showdown) to render your Markdown.
 
@@ -30,37 +29,32 @@ This is also specifically designed to work in Node environments so that it can r
 This addon is building on top of the great work of [ember-cli-showdown](https://github.com/gcollazo/ember-cli-showdown) and [ember-prism](https://github.com/shipshapecode/ember-prism).
 
 
-Compatibility
-------------------------------------------------------------------------------
+## Compatibility
 
 * Ember.js v3.13 or above
 * Ember CLI v2.13 or above
 * Node.js v12 or above
 
 
-Installation
-------------------------------------------------------------------------------
+## Installation
 
 ```
 ember install ember-showdown-prism
 ```
 
 
-Usage
-------------------------------------------------------------------------------
+## Usage
 
 Most people don't need to do anything to configure this addon as it comes with a sensible set of default languages that it supports, but if you want to customise the languages that Prism has access to then you can follow the [ember-prism documentation on adding language](https://github.com/shipshapecode/ember-prism#configuration)
 
 Note: because of the limitations of using Prism in a Node environment you cannot use most prism plugins, essentially you cannot use anything that requires the DOM element while the plugin code is running.
 
 
-Contributing
-------------------------------------------------------------------------------
+## Contributing
 
 See the [Contributing](CONTRIBUTING.md) guide for details.
 
 
-License
-------------------------------------------------------------------------------
+## License
 
 This project is licensed under the [MIT License](LICENSE.md).
