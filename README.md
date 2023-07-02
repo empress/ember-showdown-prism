@@ -31,9 +31,9 @@ This addon is building on top of the great work of [ember-cli-showdown](https://
 
 ## Compatibility
 
-* Ember.js v3.13 or above
-* Ember CLI v2.13 or above
-* Node.js v12 or above
+* Ember.js v3.16 or above
+* Ember CLI v3.16 or above
+* Node.js v16 or above
 
 
 ## Installation
