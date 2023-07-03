@@ -20,7 +20,8 @@ pre[class*="language-"] {
 }
 
 .filename > span {
-  font-family: Menlo, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", Courier, monospace;
+  font-family: Menlo, "DejaVu Sans Mono", "Bitstream Vera Sans Mono", Courier,
+    monospace;
   font-size: 0.8em;
   color: lightgrey;
   display: block;
@@ -42,9 +43,6 @@ pre[class*="language-"] {
 }
 
 code {
-  -webkit-font-feature-settings: "kern", "tnum";
-  -moz-font-feature-settings: "kern", "tnum";
-  -ms-font-feature-settings: "kern", "tnum";
   font-feature-settings: "kern", "tnum";
 }
 
@@ -72,11 +70,11 @@ pre[class*="language-"].line-numbers > code {
 .line-numbers-rows > a {
   display: block;
   counter-increment: linenumber;
-  background: none!important;
-  text-decoration: none!important;
+  background: none !important;
+  text-decoration: none !important;
 }
 
-.line-numbers-rows > a:before {
+.line-numbers-rows > a::before {
   content: counter(linenumber);
   color: #999;
   display: block;
@@ -84,7 +82,7 @@ pre[class*="language-"].line-numbers > code {
   text-align: right;
 }
 
-.line-numbers-rows > a:hover:before,
-.line-numbers-rows > a:focus:before {
+.line-numbers-rows > a:hover::before,
+.line-numbers-rows > a:focus::before {
   color: #fff;
 }
