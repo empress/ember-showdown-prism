@@ -8,18 +8,14 @@ module.exports = async function () {
   return {
     scenarios: [
       {
-        name: 'ember-3.13',
-        npm: {
-          devDependencies: {
-            'ember-source': '~3.13.0'
-          }
-        }
-      },
-      {
         name: 'ember-lts-3.16',
         npm: {
           devDependencies: {
-            'ember-source': '~3.16.0'
+            'ember-cli': '^4.0.0',
+            'ember-source': '~3.16.0',
+            'ember-qunit': '6.0.0',
+            'ember-resolver': '^8.0.0',
+            '@ember/test-helpers': '^2.9.0',
           }
         }
       },
@@ -27,7 +23,11 @@ module.exports = async function () {
         name: 'ember-lts-3.20',
         npm: {
           devDependencies: {
+            'ember-cli': '^4.0.0',
             'ember-source': '~3.20.5',
+            'ember-qunit': '6.0.0',
+            'ember-resolver': '^8.0.0',
+            '@ember/test-helpers': '^2.9.0',
           },
         },
       },
@@ -35,7 +35,11 @@ module.exports = async function () {
         name: 'ember-lts-3.24',
         npm: {
           devDependencies: {
+            'ember-cli': '^4.0.0',
             'ember-source': '~3.24.3',
+            'ember-qunit': '6.0.0',
+            'ember-resolver': '^8.0.0',
+            '@ember/test-helpers': '^2.9.0',
           },
         },
       },
@@ -43,7 +47,36 @@ module.exports = async function () {
         name: 'ember-lts-3.28',
         npm: {
           devDependencies: {
+            'ember-cli': '^4.0.0',
             'ember-source': '~3.28.0',
+            'ember-qunit': '^6.2.0',
+            'ember-resolver': '^8.0.0',
+            '@ember/test-helpers': '^2.9.0',
+          },
+        },
+      },
+      {
+        name: 'ember-lts-4.4',
+        npm: {
+          devDependencies: {
+            'ember-source': '~4.4.0',
+            'ember-resolver': '^8.0.0',
+          },
+        },
+      },
+      {
+        name: 'ember-lts-4.8',
+        npm: {
+          devDependencies: {
+            'ember-source': '~4.8.0',
+          },
+        },
+      },
+      {
+        name: 'ember-lts-4.12',
+        npm: {
+          devDependencies: {
+            'ember-source': '~4.12.0',
           },
         },
       },
@@ -77,37 +110,6 @@ module.exports = async function () {
           },
           overrides: {
             'ember-source': '$ember-source',
-          },
-        },
-      },
-      {
-        name: 'ember-default-with-jquery',
-        env: {
-          EMBER_OPTIONAL_FEATURES: JSON.stringify({
-            'jquery-integration': true,
-          }),
-        },
-        npm: {
-          devDependencies: {
-            '@ember/jquery': '^1.1.0',
-          },
-        },
-      },
-      {
-        name: 'ember-classic',
-        env: {
-          EMBER_OPTIONAL_FEATURES: JSON.stringify({
-            'application-template-wrapper': true,
-            'default-async-observers': false,
-            'template-only-glimmer-components': false,
-          }),
-        },
-        npm: {
-          devDependencies: {
-            'ember-source': '~3.28.0',
-          },
-          ember: {
-            edition: 'classic',
           },
         },
       },
