@@ -1,3 +1,10 @@
+4.0.0 / 2023-07-03
+==================
+
+* update to v5.0 with ember-cli-update #47 from @mansona
+* move showdown to a peer dependency #45 from @mansona
+* breaking: drop support for node &lt; 16 #46 from @mansona
+
 3.2.0 / 2022-08-06
 ==================
 * update ember-prism #31 from @mansona
