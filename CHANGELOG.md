@@ -1,3 +1,8 @@
+4.1.0 / 2023-07-03
+==================
+
+* move ember-prism back to dependencies #49 from @mansona
+
 4.0.0 / 2023-07-03
 ==================
 
