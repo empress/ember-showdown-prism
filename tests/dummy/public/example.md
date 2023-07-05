@@ -18,6 +18,7 @@ Now let's do something a bit more complex
 ```handlebars {data-filename=app/templates/blog-post.hbs}
 <h1>{{@model.title}}</h1>
 <h2>by {{@model.author}}</h2>
+<h3>{{ (count @model.posts) }} # posts</h3>
 
 <div class="intro">
   {{@model.intro}}
@@ -26,6 +27,39 @@ Now let's do something a bit more complex
 <div class="body">
   {{@model.body}}
 </div>
+
+<Nested::Component
+  class="some classes
+    {{if (this.someHelper this.foo 12)
+       "classes when true"
+       "classes when false"
+    }}
+  "
+  @doAction={{fn this.someAction 120}}
+  @argB={{hash
+    foo="string"
+    bar=true
+    baz=120
+    yolo=(array 12 "string" (hash foo=this.something))
+    bax=(fn this.someAction 120)
+  }}
+  {{resize this.handleResize (fn this.idk 2 "str")}}
+>
+  <:block as |foo baz|>
+    {{foo}}
+
+    {{#let foo.bar 12 as |fooBar num|}}
+      <fooBar @num={{num}} @arg={{12}} />
+    {{/let}}
+
+    {{! comment }}
+    {{!-- block }}
+      TODO: Indentation is broken after that
+      comment --}}
+
+    <baz.component />
+  </:block>
+</Nested::Component>
 ```
 
 With some different file types
