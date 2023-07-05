@@ -3,6 +3,10 @@
 import showdown from 'showdown';
 import { assert } from '@ember/debug';
 
+import { setup } from 'ember-prism';
+
+setup();
+
 // taken from prismjs, regex to detect newlines in text
 const NEW_LINE_EXP = /\n(?!$)/g;
 
