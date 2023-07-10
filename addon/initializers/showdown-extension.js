@@ -18,6 +18,13 @@ function getLineNumbersHTML(index, codeblock) {
   return `<span aria-hidden="true" class="line-numbers-rows">${lines}</span>`;
 }
 
+function stripQuotes(string) {
+  if(string?.startsWith('"') && string?.endsWith('"')) {
+    return string.substring(1, string.length - 1);
+  }
+  return string;
+}
+
 export function initialize(/* application */) {
   showdown.subParser('githubCodeBlocks', function (text, options, globals) {
     // early exit if option is not enabled
@@ -57,7 +64,7 @@ export function initialize(/* application */) {
 
       attributeString.split(' ').forEach(attribute => {
         let keyValue = attribute.split('=');
-        attributes[keyValue[0]] = keyValue[1];
+        attributes[keyValue[0]] = stripQuotes(keyValue[1]);
       });
 
       let lineNumbersHTML = getLineNumbersHTML(idCounter, codeblock);
@@ -83,6 +90,24 @@ export function initialize(/* application */) {
         }
       } else {
         codeblock = `<pre class="language-none line-numbers"><code class="language-none">${codeblock}${lineNumbersHTML}</code></pre>`;
+      }
+
+      const diffInfo = attributes['data-diff']?.split(',');
+
+      if (diffInfo) {
+        let lines = codeblock.split('\n');
+
+        diffInfo.forEach(pD => {
+          let operator = pD[0];
+          let lineNo = +(pD.replace(operator, ''));
+          let text = lines[lineNo - 1];
+          if (operator === '+') {
+            lines[lineNo - 1] = `<span class="diff-insertion"><span class="diff-operator">+</span>${text}</span>`;
+          } else {
+            lines[lineNo - 1] = `<span class="diff-deletion"><span class="diff-operator">-</span>${text}</span>`;
+          }
+        });
+        codeblock = lines.join('\n');
       }
 
       codeblock = showdown.subParser('hashBlock')(codeblock, options, globals);
