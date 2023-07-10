@@ -1,3 +1,8 @@
+4.2.0 / 2023-07-10
+==================
+
+* add support for data-diff usage in code block #53 from @mansona
+
 4.1.0 / 2023-07-03
 ==================
 
