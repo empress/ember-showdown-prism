@@ -43,3 +43,22 @@ export default class BlogPostController extends Controller {
   }
 }
 ```
+
+With a diff: 
+
+```javascript {data-filename="app/router.js" data-diff="+10,-11"}
+import EmberRouter from '@ember/routing/router';
+import config from './config/environment';
+
+const Router = EmberRouter.extend({
+  location: config.locationType,
+  rootURL: config.rootURL
+});
+
+Router.map(function() {
+  this.route('about');
+  this.route('face');
+});
+
+export default Router;
+```

@@ -86,3 +86,51 @@ pre[class*="language-"].line-numbers > code {
 .line-numbers-rows > a:focus::before {
   color: #fff;
 }
+
+.token.regex,
+.token.important,
+.token.variable {
+  color: #c3f590;
+}
+
+code > .token.property,
+code > .token.tag,
+code > .token.constant,
+code > .token.symbol,
+code > .token.deleted {
+  color: #ff6fa3;
+}
+
+code > .diff-insertion {
+  background-color: rgb(93 125 93 / 50%);
+
+  .token.property,
+  .token.tag,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: #ff95bb;
+  }
+}
+
+code > .diff-deletion {
+  background-color: rgb(144 84 84 / 70%);
+
+  .token.property,
+  .token.tag,
+  .token.constant,
+  .token.symbol,
+  .token.deleted {
+    color: #ffaac8;
+  }
+}
+
+/* don't include "removed" code when copy-pasting diffs */
+code .diff-operator,
+code .diff-deletion {
+  user-select: none;
+}
+
+code .token.comment {
+  color: #e6e6e6;
+}
