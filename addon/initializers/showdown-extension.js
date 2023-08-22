@@ -6,25 +6,6 @@ import { assert } from '@ember/debug';
 // taken from prismjs, regex to detect newlines in text
 const NEW_LINE_EXP = /\n(?!$)/g;
 
-function diffInfo(args, codeblock) {
-  if (args) {
-    let lines = codeblock.split('\n');
-
-    args.forEach(pD => {
-      let operator = pD[0];
-      let lineNo = +(pD.replace(operator, ''));
-      let text = lines[lineNo - 1];
-      if (operator === '+') {
-        lines[lineNo - 1] = `<span class="diff-insertion"><span class="diff-operator">+</span>${text}</span>`;
-      } else {
-        lines[lineNo - 1] = `<span class="diff-deletion"><span class="diff-operator">-</span>${text}</span>`;
-      }
-    });
-    codeblock = lines.join('\n');
-  }
-  return codeblock;
-}
-
 function getLineNumbersHTML(index, codeblock) {
   let match = codeblock.match(NEW_LINE_EXP);
   let linesNum = match ? match.length + 1 : 1;
@@ -42,6 +23,25 @@ function stripQuotes(string) {
     return string.substring(1, string.length - 1);
   }
   return string;
+}
+
+function diffInfo(args, codeblock) {
+  if (args) {
+    let lines = codeblock.split('\n');
+
+    args.forEach(pD => {
+      let operator = pD[0];
+      let lineNo = +(pD.replace(operator, ''));
+      let text = lines[lineNo - 1];
+      if (operator === '+') {
+        lines[lineNo - 1] = `<span class="diff-insertion"><span class="diff-operator">+</span>${text}</span>`;
+      } else {
+        lines[lineNo - 1] = `<span class="diff-deletion"><span class="diff-operator">-</span>${text}</span>`;
+      }
+    });
+    codeblock = lines.join('\n');
+  }
+  return codeblock;
 }
 
 export function initialize(/* application */) {
@@ -89,6 +89,8 @@ export function initialize(/* application */) {
       let lineNumbersHTML = getLineNumbersHTML(idCounter, codeblock);
       idCounter++;
 
+      let diffInfoArgs = attributes['data-diff']?.split(',');
+
       assert(`Language "${language}" not found. Have you configured Prism correctly?`, !language || Prism.languages[language]);
 
       if (language && Prism.languages[language]) {
@@ -98,7 +100,7 @@ export function initialize(/* application */) {
         codeblock = codeblock.replace(/¨T/g, '¨');
 
         let highlightedCodeBlock = Prism.highlight(codeblock, Prism.languages[language], language) + end;
-        highlightedCodeBlock = diffInfo(attributes['data-diff']?.split(','), highlightedCodeBlock);
+        highlightedCodeBlock = diffInfo(diffInfoArgs, highlightedCodeBlock);
         codeblock = `<pre class="language-${language} line-numbers"><code ${language ? `class="${language} language-${language}"` : ''}>${highlightedCodeBlock}${lineNumbersHTML}</code></pre>`;
 
         // Convert to the special characters Showdown uses again
@@ -109,7 +111,8 @@ export function initialize(/* application */) {
           codeblock = `<div class="filename ${language}"><div class="ribbon"></div><span>${attributes['data-filename'] || ''}</span>${codeblock}</div>`;
         }
       } else {
-        codeblock = diffInfo(attributes['data-diff']?.split(','), codeblock);
+        // (bug?) This clause may never be reached as the assert above fires in this case?
+        codeblock = diffInfo(diffInfoArgs, codeblock);
         codeblock = `<pre class="language-none line-numbers"><code class="language-none">${codeblock}${lineNumbersHTML}</code></pre>`;
       }
 
