@@ -111,7 +111,6 @@ export function initialize(/* application */) {
           codeblock = `<div class="filename ${language}"><div class="ribbon"></div><span>${attributes['data-filename'] || ''}</span>${codeblock}</div>`;
         }
       } else {
-        // (bug?) This clause may never be reached as the assert above fires in this case?
         codeblock = diffInfo(diffInfoArgs, codeblock);
         codeblock = `<pre class="language-none line-numbers"><code class="language-none">${codeblock}${lineNumbersHTML}</code></pre>`;
       }
