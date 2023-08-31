@@ -24,8 +24,8 @@ module('Acceptance | index', function (hooks) {
     assert.dom('pre.language-handlebars code.language-handlebars').isVisible();
     assert
       .dom('pre.language-handlebars code.language-handlebars')
-      .hasText(
-        `<h1>{{@model.title}}</h1> <h2>by {{@model.author}}</h2> <div class="intro"> {{@model.intro}} </div> <hr> <div class="body"> {{@model.body}} </div>`
+      .containsText(
+        `<h1>{{@model.title}}</h1> <h2>by {{@model.author}}</h2> <h3>{{ (count @model.posts) }} # posts</h3> <div class="intro"> {{@model.intro}} </div> <hr> <div class="body"> {{@model.body}} </div>`
       );
   });
 });

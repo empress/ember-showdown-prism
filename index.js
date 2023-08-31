@@ -7,13 +7,13 @@ const { join } = require('path');
 module.exports = {
   name: require('./package').name,
 
-  treeForPublic: function() {
+  treeForPublic: function () {
     return new Funnel(join(this.root, 'public'));
   },
 
   included() {
     let app = findHost(this);
-    if(!app.options['ember-prism']) {
+    if (!app.options['ember-prism']) {
       app.options['ember-prism'] = {
         theme: 'okaidia',
 
@@ -21,7 +21,6 @@ module.exports = {
           'apacheconf',
           'bash',
           'css',
-          'handlebars',
           'http',
           'javascript',
           'json',
@@ -32,10 +31,10 @@ module.exports = {
           'typescript',
           'diff',
         ],
-      }
+      };
     }
 
-    this._super.included.apply(this, arguments)
+    this._super.included.apply(this, arguments);
   },
 };
 
