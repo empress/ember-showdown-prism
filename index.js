@@ -24,6 +24,7 @@ module.exports = {
           'http',
           'javascript',
           'json',
+          'json5',
           'markup-templating',
           'ruby',
           'scss',
@@ -31,6 +32,7 @@ module.exports = {
           'typescript',
           'diff',
         ],
+        plugins: ['line-numbers', 'normalize-whitespace']
       };
     }
 
