@@ -98,6 +98,9 @@
   "ember-addon": {
     "configPath": "tests/dummy/config"
   },
+  "fastbootDependencies": [
+    "fs"
+  ],
   "release-it": {
     "plugins": {
       "@release-it-plugins/lerna-changelog": {
