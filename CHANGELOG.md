@@ -1,3 +1,16 @@
+
+## v4.3.0 (2023-09-29)
+
+#### :rocket: Enhancement
+* [#51](https://github.com/empress/ember-showdown-prism/pull/51) Use the setup function from ember-prism ([@NullVoxPopuli](https://github.com/NullVoxPopuli))
+
+#### :bug: Bug Fix
+* [#57](https://github.com/empress/ember-showdown-prism/pull/57) Fix data-diff first line bug ([@fry69](https://github.com/fry69))
+
+#### Committers: 2
+- [@NullVoxPopuli](https://github.com/NullVoxPopuli)
+- [@fry69](https://github.com/fry69)
+
 4.2.0 / 2023-07-10
 ==================
 
