@@ -1,4 +1,13 @@
 
+
+## v4.4.0 (2023-09-29)
+
+#### :rocket: Enhancement
+* [#58](https://github.com/empress/ember-showdown-prism/pull/58) add json5, line-numbers, and normalize-whitespace ([@lupestro](https://github.com/lupestro))
+
+#### Committers: 1
+- Ralph Mack ([@lupestro](https://github.com/lupestro))
+
 ## v4.3.0 (2023-09-29)
 
 #### :rocket: Enhancement
