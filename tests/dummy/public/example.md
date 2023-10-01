@@ -78,6 +78,20 @@ export default class BlogPostController extends Controller {
 }
 ```
 
+Typescript never hurts
+
+```typescript {data-filename=app/router.ts}
+import EmberRouter from '@ember/routing/router';
+import config from './config/environment';
+
+export default class Router extends EmberRouter {
+  location = config.locationType;
+  rootURL = config.rootURL;
+}
+
+Router.map(function() {});
+```
+
 With a diff: 
 
 ```javascript {data-filename="app/router.js" data-diff="+10,-11"}
