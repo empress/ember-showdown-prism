@@ -42,6 +42,11 @@ pre[class*="language-"] {
   background-image: url("/images/ribbon-hbs.svg");
 }
 
+.filename.typescript .ribbon,
+.filename.ts .ribbon {
+  background-image: url("/images/ribbon-ts.svg");
+}
+
 code {
   font-feature-settings: "kern", "tnum";
 }
